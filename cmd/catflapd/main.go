@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/menabrealabs/catflap/internal/pkg/port"
 	"github.com/menabrealabs/catflap/internal/pkg/user"
 )
 
@@ -15,8 +16,8 @@ func main() {
 		log.Fatalf("failed to create user with error: %s\n", err)
 	}
 
-	user.Ports.Add(22)
-	user.Ports.Add(80)
+	user.Ports.Add(port.TCP, 22)
+	user.Ports.Add(port.TCP, 80)
 
 	fmt.Printf("%s pass is %x with ports %v\n", user.Name, user.Pass, user.Ports)
 }
