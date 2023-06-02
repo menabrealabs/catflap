@@ -83,7 +83,7 @@ func TestPortContains(t *testing.T) {
 		ports.Remove(tcpCase)
 
 		if ports.Contains(tcpCase) == true {
-			t.Error("failed to report that a port exists in the set")
+			t.Error("wrongly reports that a port exists in the set")
 		}
 	})
 }
