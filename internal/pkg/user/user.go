@@ -24,7 +24,7 @@ func New(name, password string) (*User, error) {
 	return &User{
 		Name:  name,
 		Pass:  pass,
-		Ports: *port.New(),
+		Ports: make(port.Set),
 	}, nil
 }
 

@@ -6,11 +6,6 @@ type Port uint16
 // A finite set of ports
 type Set map[Port]struct{}
 
-// Initialize a reference to a new port.Set
-func New() *Set {
-	return &Set{}
-}
-
 // Add a Port to a port.Set
 func (set Set) Add(port Port) {
 	set[port] = struct{}{}
