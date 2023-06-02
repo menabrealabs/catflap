@@ -33,7 +33,7 @@ func New(name, raw_passphrase string) (*User, error) {
 }
 
 // Implements the String interface.
-func (user *User) String() string {
+func (user User) String() string {
 	return user.Name
 }
 
@@ -49,7 +49,7 @@ func (user *User) Update(name, raw_passphrase string) {
 }
 
 // Authenticates plaintext passphrase against the stored encrypted pass.
-func (user *User) Authenticate(raw_passphrase string) (bool, error) {
+func (user User) Authenticate(raw_passphrase string) (bool, error) {
 	pass, err := EncryptPassword(raw_passphrase)
 	if err != nil {
 		return false, err
