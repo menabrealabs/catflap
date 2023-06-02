@@ -18,5 +18,5 @@ func main() {
 	user.Ports.Add(22)
 	user.Ports.Add(80)
 
-	fmt.Printf("%s pass is %s with ports %v\n", user.Name, user.Pass, user.Ports)
+	fmt.Printf("%s pass is %x with ports %v\n", user.Name, user.Pass, user.Ports)
 }
