@@ -1,6 +1,8 @@
 package user
 
 import (
+	"errors"
+
 	"github.com/menabrealabs/catflap/internal/pkg/port"
 )
 
@@ -26,6 +28,24 @@ func (user User) String() string {
 	return user.Name
 }
 
+func (user *User) UpdateName(name string) error {
+	if len(name) < 3 {
+		return errors.New("user name must be 3 or more characters")
+	}
+
+	user.Name = name
+	return nil
+}
+
+func (user *User) UpdatePass(raw_passphrase string) error {
+	if len(raw_passphrase) < 16 {
+		return errors.New("passphrase must be 16 characters or more")
+	}
+
+	user.Pass = EncryptPassword(raw_passphrase)
+	return nil
+}
+
 // Update the user name and password.
 func (user *User) Update(name, raw_passphrase string) {
 	if name != "" {
@@ -37,7 +57,7 @@ func (user *User) Update(name, raw_passphrase string) {
 	}
 }
 
-// Authenticates plaintext passphrase against the stored encrypted pass.
+// Authenticates plaintext passphrase login against the stored encrypted pass.
 func (user User) Authenticate(raw_passphrase string) bool {
 	pass := EncryptPassword(raw_passphrase)
 	return (user.Pass == pass)
