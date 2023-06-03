@@ -7,7 +7,7 @@ const (
 	UDP
 )
 
-// A TCP/IP port number: two byte integer
+// An IP protocol and port number
 type Port struct {
 	Proto  Protocol
 	Number uint16
