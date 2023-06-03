@@ -4,18 +4,13 @@ package main
 
 import (
 	"fmt"
-	"log"
 
 	"github.com/menabrealabs/catflap/internal/pkg/port"
 	"github.com/menabrealabs/catflap/internal/pkg/user"
 )
 
 func main() {
-	user, err := user.New("Nyk", "dapper")
-	if err != nil {
-		log.Fatalf("failed to create user with error: %s\n", err)
-	}
-
+	user := user.New("Nyk", "dapper")
 	user.Ports.Add(port.TCP, 22)
 	user.Ports.Add(port.TCP, 80)
 
