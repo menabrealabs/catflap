@@ -87,3 +87,15 @@ func TestPortContains(t *testing.T) {
 		}
 	})
 }
+
+func TestPortReset(t *testing.T) {
+	ports := setupPorts()
+
+	t.Run("should empty the port set with zero ports", func(t *testing.T) {
+		ports.Reset()
+
+		if len(ports) > 0 {
+			t.Error("set was not reset and still contains port records")
+		}
+	})
+}
