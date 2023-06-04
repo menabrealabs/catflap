@@ -4,7 +4,7 @@ import (
 	"crypto/sha256"
 	"testing"
 
-	"github.com/menabrealabs/catflap/internal/pkg/user"
+	"github.com/menabrealabs/catflap/user"
 )
 
 const testUserPassphrase = "passphrase"

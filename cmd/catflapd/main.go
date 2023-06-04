@@ -5,8 +5,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/menabrealabs/catflap/internal/pkg/port"
-	"github.com/menabrealabs/catflap/internal/pkg/user"
+	"github.com/menabrealabs/catflap/port"
+	"github.com/menabrealabs/catflap/user"
 )
 
 func main() {

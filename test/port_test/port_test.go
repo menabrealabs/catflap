@@ -3,7 +3,7 @@ package port_test
 import (
 	"testing"
 
-	"github.com/menabrealabs/catflap/internal/pkg/port"
+	"github.com/menabrealabs/catflap/port"
 )
 
 var (

@@ -3,7 +3,7 @@ package user
 import (
 	"errors"
 
-	"github.com/menabrealabs/catflap/internal/pkg/port"
+	"github.com/menabrealabs/catflap/port"
 )
 
 // A User record stores username, a Sha256 checksum of their
