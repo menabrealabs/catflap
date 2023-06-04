@@ -1,22 +1,20 @@
-package user_test
+package user
 
 import (
 	"crypto/sha256"
 	"testing"
-
-	"github.com/menabrealabs/catflap/user"
 )
 
 const testUserPassphrase = "passphrase"
 
-var testUser = user.User{
+var testUser = User{
 	Name: "username",
 	Pass: sha256.Sum256([]byte(testUserPassphrase)),
 }
 
 func TestUser(t *testing.T) {
 	t.Run("should encrypt passphrase when new User reference created", func(t *testing.T) {
-		user := user.New(testUser.Name, testUserPassphrase)
+		user := New(testUser.Name, testUserPassphrase)
 
 		if user.Pass != testUser.Pass {
 			t.Errorf("expected: %s, but got: %s", testUser.Pass, user.Pass)
@@ -32,7 +30,7 @@ func TestUser(t *testing.T) {
 
 func TestUserUpdateName(t *testing.T) {
 	t.Run("should update user name", func(t *testing.T) {
-		user := user.New(testUser.Name, testUserPassphrase)
+		user := New(testUser.Name, testUserPassphrase)
 		user.UpdateName("luser")
 
 		if user.Name != "luser" {
@@ -41,7 +39,7 @@ func TestUserUpdateName(t *testing.T) {
 	})
 
 	t.Run("should return error when name is too short", func(t *testing.T) {
-		user := user.New(testUser.Name, testUserPassphrase)
+		user := New(testUser.Name, testUserPassphrase)
 		err := user.UpdateName("no")
 
 		if err == nil {
@@ -50,7 +48,7 @@ func TestUserUpdateName(t *testing.T) {
 	})
 
 	t.Run("should not update on error", func(t *testing.T) {
-		user := user.New(testUser.Name, testUserPassphrase)
+		user := New(testUser.Name, testUserPassphrase)
 		user.UpdateName("no")
 
 		if user.Name == "no" {
@@ -61,10 +59,10 @@ func TestUserUpdateName(t *testing.T) {
 
 func TestUserUpdatePass(t *testing.T) {
 	newUserPassphrase := "buttercup-tedious-opinions"
-	newUserPass := user.EncryptPassword(newUserPassphrase)
+	newUserPass := EncryptPassword(newUserPassphrase)
 
 	t.Run("should update user pass", func(t *testing.T) {
-		newUser := user.New(testUser.Name, testUserPassphrase)
+		newUser := New(testUser.Name, testUserPassphrase)
 		newUser.UpdatePass(newUserPassphrase)
 
 		if newUser.Pass != newUserPass {
@@ -73,7 +71,7 @@ func TestUserUpdatePass(t *testing.T) {
 	})
 
 	t.Run("should return error when passphrase is too short", func(t *testing.T) {
-		newUser := user.New(testUser.Name, testUserPassphrase)
+		newUser := New(testUser.Name, testUserPassphrase)
 		err := newUser.UpdatePass("shortpass")
 
 		if err == nil {
@@ -82,7 +80,7 @@ func TestUserUpdatePass(t *testing.T) {
 	})
 
 	t.Run("should not update on error", func(t *testing.T) {
-		newUser := user.New(testUser.Name, testUserPassphrase)
+		newUser := New(testUser.Name, testUserPassphrase)
 		newUser.UpdatePass("shortpass")
 
 		if newUser.Pass != testUser.Pass {

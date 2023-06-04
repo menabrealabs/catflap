@@ -1,20 +1,18 @@
-package port_test
+package port
 
 import (
 	"testing"
-
-	"github.com/menabrealabs/catflap/port"
 )
 
 var (
-	tcpCase = port.Port{Proto: port.TCP, Number: 22}
-	udpCase = port.Port{Proto: port.UDP, Number: 25}
+	tcpCase = Port{Proto: TCP, Number: 22}
+	udpCase = Port{Proto: UDP, Number: 25}
 )
 
-func setupPorts() port.Set {
-	ports := port.Set{}
-	ports.Add(port.TCP, 22)
-	ports.Add(port.UDP, 25)
+func setupPorts() Set {
+	ports := Set{}
+	ports.Add(TCP, 22)
+	ports.Add(UDP, 25)
 
 	return ports
 }
@@ -72,7 +70,7 @@ func TestPortRemove(t *testing.T) {
 func TestPortContains(t *testing.T) {
 	ports := setupPorts()
 	t.Run("should return true when port is in the set", func(t *testing.T) {
-		ports.Add(port.TCP, 22)
+		ports.Add(TCP, 22)
 
 		if ports.Contains(tcpCase) == false {
 			t.Error("failed to report that a port exists in the set")
