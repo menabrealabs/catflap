@@ -1,12 +1,15 @@
 package port
 
+// Exists is an empty struct (zero bytes) indicating naked existence.
+type Exists struct{}
+
 // A Set is a finite set of Port objects.
-type Set map[Port]struct{}
+type Set map[Port]Exists
 
 // Add appends a Port object to a port.Set.
 func (set Set) Add(proto Protocol, number uint16) {
 	port := Port{Proto: proto, Number: number}
-	set[port] = struct{}{}
+	set[port] = Exists{}
 }
 
 // Remove deletes a Port object from a port.Set.
